@@ -1,11 +1,13 @@
 from aiogram import types
 
-from loader import dp
+from data.config import ADMINS
+from loader import dp, bot
 
 
-
-def poll(bot, update):
-    options = ['a', 'b']
-    bot.send_poll(update.message.chat_id, "please choose option a or    b: ",options)
-    updater.dispatcher.add_handler(CommandHandler('set', poll))
-    updater.start_polling()
+@dp.message_handler(commands="quiz")
+async def poll(msg: types.Message):
+    ques = "Isming nima"
+    ans1 = "Abdurahim"
+    ans2 = "daskdj"
+    ans3 = 'dasdsda'
+    await bot.send_poll(chat_id=ADMINS[0], question=ques,options=[ans1, ans2, ans3], is_anonymous=True)
